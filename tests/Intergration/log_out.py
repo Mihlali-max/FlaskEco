@@ -40,20 +40,8 @@ class TestRegister(BaseTest):
 
             self.assertIn(b'Success! You are logged in as:',resp.data)
 
+    def test_Logout(self):
 
-    def test_get_sign_up(self):
-    # app test client
-     with self.app:
-        # assert that no user is signed in
-        # cant test current user before get request ?
-        # self.assertEqual(current_user.get_id(), AnonymousUserMixin.get_id(self)) # what even
-        # go to route
-        response = self.app.get('/register', follow_redirects=True)
-        # assert that the route name is correct
-        self.assertIn('/register', request.url)
-        # assert status code 200
-        self.assertEqual(response.status_code, 200)
-        # assert that no user is signed in
-        self.assertEqual(current_user.get_id(), AnonymousUserMixin.get_id(self))
-
-
+        with self.app:
+            respa = self.app.get('/logout', follow_redirects=True)
+            self.assertEqual(respa.status_code, 200)

@@ -57,3 +57,4 @@ class TestRegister(BaseTest):
         self.assertEqual(current_user.get_id(), AnonymousUserMixin.get_id(self))
 
 
+           
