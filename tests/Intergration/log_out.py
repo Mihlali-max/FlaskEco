@@ -18,7 +18,8 @@ class TestRegister(BaseTest):
             self.assertTrue(user)
             # assert that flash message is shown
             self.assertIn(b'Account created successfully! You are now logged in as ', response.data)
-            # assert that user is logged in
+            print(response.data)
+            # assert that user is logged in'
             self.assertEqual(current_user.get_id(), '1')
             # assert that page is redirected
 
@@ -40,8 +41,6 @@ class TestRegister(BaseTest):
 
             self.assertIn(b'Success! You are logged in as:',resp.data)
 
-    def test_Logout(self):
-
-        with self.app:
             respa = self.app.get('/logout', follow_redirects=True)
+            self.assertIn(b'You have been logged out!',respa.data)
             self.assertEqual(respa.status_code, 200)

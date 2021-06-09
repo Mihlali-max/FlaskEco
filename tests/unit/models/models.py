@@ -9,7 +9,6 @@ class TestAllModels(TestCase):
                         password_hash='453545zdfds',
                         budget =1000,
 
-
         )
         self.assertEqual(new_user.id,0)
         self.assertAlmostEqual(new_user.password_hash,'453545zdfds')

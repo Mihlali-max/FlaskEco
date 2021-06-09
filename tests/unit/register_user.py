@@ -4,6 +4,8 @@ from market import db
 from market.models import User, Item
 from flask_login import current_user ,AnonymousUserMixin
 
+
+
 class TestRegister(BaseTest):
 
     # test signing up user successfully
@@ -28,6 +30,7 @@ class TestRegister(BaseTest):
                                      data=dict(username='Namey', email_address='mail@gmail.com',
                                                password1='453545zdfds', password2='453545zdfds'),
                                      follow_redirects=True)
+
             # assert that new user is created in db
             user = db.session.query(User).filter_by(username='Namey').first()
             self.assertTrue(user)
@@ -36,6 +39,7 @@ class TestRegister(BaseTest):
             # assert that user is logged in
             self.assertEqual(current_user.get_id(), '1')
             # assert that page is redirected
+
             resp = self.app.post('/login', data =dict(username='Namey', password='453545zdfds'),follow_redirects=True)
 
             self.assertIn(b'Success! You are logged in as:',resp.data)
