@@ -2,7 +2,6 @@ from unittest import TestCase
 from run import app
 from market import db
 
-
 class BaseTest(TestCase):
     # this runs before each function
     def setUp(self):
