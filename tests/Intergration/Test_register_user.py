@@ -11,13 +11,13 @@ class TestRegister(BaseTest):
         with self.app:
             # create a post req with valid data
             response = self.app.post('/register',
-                                    data=dict(username='Namey', email_address = 'mail@gmail.com', password1='453545zdfds',password2='453545zdfds'),
+                                    data=dict(username='Name', email_address = 'mail@gmail.com', password1='453545zdfds',password2='453545zdfds'),
                                     follow_redirects=True)
             # assert that new user is created in db
-            user = db.session.query(User).filter_by(username='Namey').first()
+            user = db.session.query(User).filter_by(username='Name').first()
             self.assertTrue(user)
             # assert that flash message is shown
-            self.assertIn(b'Account created successfully! You are now logged in as ', response.data)
+            self.assertIn(b'Account created successfully! You are now logged in as Name', response.data)
             # assert that user is logged in
             self.assertEqual(current_user.get_id(), '1')
             # assert that page is redirected
