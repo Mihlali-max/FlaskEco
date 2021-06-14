@@ -25,7 +25,6 @@ class TestAllModels(BaseTest):
                         barcode='453545zdfds',
                         description='Good',
                         owner =1000
-
                         )
      self.assertEqual(new_user.id, 0)
      self.assertEqual(new_user.name, 'Namey')
