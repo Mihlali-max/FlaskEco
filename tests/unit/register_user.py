@@ -40,6 +40,8 @@ class TestRegister(BaseTest):
             self.assertEqual(current_user.get_id(), '1')
             # assert that page is redirected
 
+
+
             resp = self.app.post('/login', data =dict(username='Namey', password='453545zdfds'),follow_redirects=True)
 
             self.assertIn(b'Success! You are logged in as:',resp.data)
@@ -59,5 +61,7 @@ class TestRegister(BaseTest):
         self.assertEqual(response.status_code, 200)
         # assert that no user is signed in
         self.assertEqual(current_user.get_id(), AnonymousUserMixin.get_id(self))
+
+
 
 

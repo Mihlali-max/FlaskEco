@@ -3,6 +3,7 @@ from flask import request
 from market import db
 from market.models import User, Item
 from flask_login import current_user ,AnonymousUserMixin
+from market import bcrypt, db
 
 class TestRegister(BaseTest):
 
@@ -39,6 +40,8 @@ class TestRegister(BaseTest):
             resp = self.app.post('/login', data =dict(username='Namey', password='453545zdfds'),follow_redirects=True)
 
             self.assertIn(b'Success! You are logged in as:',resp.data)
+
+
 
 
     def test_get_sign_up(self):
