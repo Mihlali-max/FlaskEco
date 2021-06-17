@@ -17,9 +17,6 @@ class TestForms(BaseTest):
                 user = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
                 self.assertTrue(user)
 
-                # response = self.app.post('/register',
-                #                          data=dict(username="JoeDoe", email_address="joe@gmail.com",
-                #                                    password1="202177", password2="202177",), follow_redirects=True)
 
                 class Username():
                     data = "MihlaliM"
