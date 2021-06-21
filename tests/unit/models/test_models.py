@@ -51,7 +51,7 @@ class TestAllModels(BaseTest):
     #     self.assertFalse(User_)
 
 
-class Testingcansell(BaseTest):
+class testing_can_sell(BaseTest):
     def test_market_password_correction(self):
         with self.app:
             # Registering a new user
