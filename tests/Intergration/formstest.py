@@ -11,12 +11,14 @@ class TestForms(BaseTest):
         with self.app:
             with self.app_context:
                 response1 = self.app.post('/register',
-                                          data=dict(username="MihlaliM", email_address="momozamihla@gmail.com",
-                                                    password1="alumna77", password2="alumna77",), follow_redirects=True)
+                                          data=dict(username="MihlaliM",
+                                                    email_address="momozamihla@gmail.com",
+                                                    password1="alumna77",
+                                                    password2="alumna77"),
+                                          follow_redirects=True)
 
                 user = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
                 self.assertTrue(user)
-
 
                 class Username():
                     data = "MihlaliM"
