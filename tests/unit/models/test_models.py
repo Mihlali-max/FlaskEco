@@ -73,6 +73,22 @@ class testing_can_sell(BaseTest):
                     password_hash1 = User.check_password_correction(first_user, "Thandokazi")
                     self.assertFalse(password_hash1)
 
+    def test_password_method(self):
+        with self.app:
+            with self.app_context:
+                self.app.post('/register',
+                              data=dict(id=1,
+                                        username="MihlaliM",
+                                        email_address="momozamihla@gmail.com",
+                                        password1="Khazimla",
+                                        password2="Khazimla", ), follow_redirects=True)
+
+                first_user = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
+
+                # Logging in with a correct password
+                password_hash = first_user.password
+                self.assertTrue(password_hash)
+
 
     def test_password_setter_method(self):
         with self.app:
@@ -86,21 +102,6 @@ class testing_can_sell(BaseTest):
                 first_user = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
 
                 self.assertNotEqual(first_user.password_hash, "Khazimla")
-
-
-    def test_password_method(self):
-        with self.app:
-            with self.app_context:
-                # Registering a new user
-                response = self.app.post('/register',
-                                         data=dict(id=1, username="JoeDoe", email_address="joe@gmail.com",
-                                                   password1="202177", password2="202177",), follow_redirects=True)
-
-                user1 = db.session.query(User).filter_by(email_address="joe@gmail.com").first()
-
-                # Logging in with a correct password
-                password_hash = user1.password
-                self.assertTrue(password_hash)
 
 
     def test_item_sell_method(self):

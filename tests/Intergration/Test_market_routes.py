@@ -12,14 +12,14 @@ class TestMarketRoute(BaseTest):
                 response = self.app.post('/register',
                                          data=dict(username="MihlaliM",
                                                    email_address="momozamihla@gmail.com",
-                                                   password1="alumna77", password2="alumna77",), follow_redirects=True)
+                                                   password1="alumna77", password2="alumna77"), follow_redirects=True)
 
                 user = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
                 self.assertTrue(user)
 
                 response = self.app.post('/login', data=dict(username="MihlaliM", password="alumna77"), follow_redirects=True)
 
-                self.assertIn(b'Success! You are logged in as: JoeDoe', response.data)
+                self.assertIn(b'Success! You are logged in as: MihlaliM', response.data)
 
                 # Asserting that the user is redirected to the market page after login
                 self.assertEqual('http://localhost/market', request.url)
@@ -33,7 +33,7 @@ class TestMarketRoute(BaseTest):
                                       barcode=876878,
                                       description="Fresh form the box")
 
-                purchased_item1 = Item(id=1, name="New Product",
+                purchased_item1 = Item(id=1, name="New Products",
                                        price=3000,
                                        barcode=876878,
                                        description="Fresh form the box")
@@ -46,16 +46,16 @@ class TestMarketRoute(BaseTest):
             with self.app_context:
                 response = self.app.post('/register',
                                          data=dict(id=1, username="MihlaliM", email_address="momozamihla@gmail.com",
-                                                   password1="alumna77", password2="alumna77",), follow_redirects=True)
+                                                   password1="alumna77", password2="alumna77"), follow_redirects=True)
 
                 user = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
                 self.assertTrue(user)
 
                 response1 = self.app.post('/register',
-                                          data=dict(id=2, username="MihlaliM", email_address="momozamihla@gmail.com",
+                                          data=dict(id=2, username="Mihlal", email_address="momozamia@gmail.com",
                                                     password1="202176", password2="202176",), follow_redirects=True)
 
-                user1 = db.session.query(User).filter_by(email_address="momozamihla@gmail.com").first()
+                user1 = db.session.query(User).filter_by(email_address="momozamia@gmail.com").first()
                 self.assertTrue(user1)
 
                 # Asserting that the user is redirected to the market page after login
@@ -77,8 +77,8 @@ class TestMarketRoute(BaseTest):
         with self.app:
             with self.app_context:
                 response1 = self.app.post('/register',
-                                          data=dict(id=2, username="MihlaliM", email_address="momozamihla@gmail.com",
-                                                    password1="aluki", password2="aluki",), follow_redirects=True)
+                                          data=dict(id=2, username="Mihlal", email_address="momozamia@gmail.com",
+                                                    password1="202176", password2="202176",), follow_redirects=True)
 
                 response = self.app.post('/market', follow_redirects=True)
 
